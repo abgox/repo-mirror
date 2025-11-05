@@ -1,0 +1,47 @@
+name: Mirror for ScoopInstaller
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+concurrency:
+  group: mirror-scoop-installer
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repository list exclude private and fork
+        id: repo
+        uses: yi-Xu-0100/repo-list-generator@v1.1.1
+      - uses: Yikun/hub-mirror-action@master
+        with:
+          src: github/abgox
+          dst: gitee/abgox
+          dst_key: ${{ secrets.GITEE_SSH_PRIVATE_KEY }}
+          dst_token: ${{ secrets.GITEE_TOKEN }}
+          force_update: true
+          static_list: ${{ steps.repo.outputs.repoList }}
+          # black_list: ''
+  last_update:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        # with:
+        #   fetch-depth: 0
+
+      - name: Update
+        shell: pwsh
+        run: |
+          (Get-Date).ToUniversalTime().AddHours(8).ToString("yyyy-MM-dd") | Out-File -FilePath last_update.txt -Encoding utf8
+
+      - name: Commit and push changes
+        shell: pwsh
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u
+          git commit -m "chore: automatically update some content"
+          git push
