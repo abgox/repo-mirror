@@ -9,12 +9,13 @@ concurrency:
   group: mirror-abgox
 
 jobs:
-  mirror:
+  sync-gitee:
     runs-on: ubuntu-latest
     steps:
       - name: Get repository list exclude private and fork
         id: repo
         uses: yi-Xu-0100/repo-list-generator@v1.1.1
+
       - uses: Yikun/hub-mirror-action@master
         with:
           src: github/abgox
@@ -24,6 +25,14 @@ jobs:
           force_update: true
           static_list: ${{ steps.repo.outputs.repoList }}
           black_list: "repo-mirror,abgo_bucket,PS-completions,ScoopType,AHK_lib"
+
+  sync-gitcode:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repository list exclude private and fork
+        id: repo
+        uses: yi-Xu-0100/repo-list-generator@v1.1.1
+
       - uses: Yikun/hub-mirror-action@master
         with:
           src: github/abgox
@@ -33,6 +42,7 @@ jobs:
           force_update: true
           static_list: ${{ steps.repo.outputs.repoList }}
           black_list: "repo-mirror,abgo_bucket,PS-completions,ScoopType,AHK_lib"
+
   last_update:
     runs-on: windows-latest
     steps:
