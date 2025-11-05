@@ -1,4 +1,4 @@
-name: Mirror for ScoopInstaller
+name: Mirror for abgox
 
 on:
   workflow_dispatch:
