@@ -23,7 +23,7 @@ jobs:
           dst_token: ${{ secrets.GITEE_TOKEN }}
           force_update: true
           static_list: ${{ steps.repo.outputs.repoList }}
-          # black_list: ''
+          black_list: "repo-mirror,abgo_bucket,PS-completions,ScoopType,AHK_lib"
   last_update:
     runs-on: windows-latest
     steps:
