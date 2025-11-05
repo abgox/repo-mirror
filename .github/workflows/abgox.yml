@@ -24,6 +24,15 @@ jobs:
           force_update: true
           static_list: ${{ steps.repo.outputs.repoList }}
           black_list: "repo-mirror,abgo_bucket,PS-completions,ScoopType,AHK_lib"
+      - uses: Yikun/hub-mirror-action@master
+        with:
+          src: github/abgox
+          dst: gitcode/abgox
+          dst_key: ${{ secrets.GITCODE_SSH_PRIVATE_KEY }}
+          dst_token: ${{ secrets.GITCODE_TOKEN }}
+          force_update: true
+          static_list: ${{ steps.repo.outputs.repoList }}
+          black_list: "repo-mirror,abgo_bucket,PS-completions,ScoopType,AHK_lib"
   last_update:
     runs-on: windows-latest
     steps:
