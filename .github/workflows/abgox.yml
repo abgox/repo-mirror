@@ -6,7 +6,7 @@ on:
     - cron: "0 0 * * *"
 
 concurrency:
-  group: mirror-scoop-installer
+  group: mirror-abgox
 
 jobs:
   mirror:
