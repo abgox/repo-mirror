@@ -58,51 +58,51 @@ jobs:
           force_update: true
           static_list: "scoop-games"
 
-  sync-gitcode:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: Yikun/hub-mirror-action@master
-        with:
-          src: github/ScoopInstaller
-          dst: gitcode/scoop-installer-mirrors
-          dst_key: ${{ secrets.GITCODE_SSH_PRIVATE_KEY }}
-          dst_token: ${{ secrets.GITCODE_TOKEN }}
-          account_type: org
-          force_update: true
-          static_list: "Main,Extras,Versions,Nirsoft,PHP,Nonportable,Java,Scoop,Install"
+  # sync-gitcode:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: Yikun/hub-mirror-action@master
+  #       with:
+  #         src: github/ScoopInstaller
+  #         dst: gitcode/scoop-installer-mirrors
+  #         dst_key: ${{ secrets.GITCODE_SSH_PRIVATE_KEY }}
+  #         dst_token: ${{ secrets.GITCODE_TOKEN }}
+  #         account_type: org
+  #         force_update: true
+  #         static_list: "Main,Extras,Versions,Nirsoft,PHP,Nonportable,Java,Scoop,Install"
 
-      - uses: Yikun/hub-mirror-action@master
-        with:
-          src: github/matthewjberger
-          dst: gitcode/scoop-installer-mirrors
-          dst_key: ${{ secrets.GITCODE_SSH_PRIVATE_KEY }}
-          dst_token: ${{ secrets.GITCODE_TOKEN }}
-          src_account_type: user
-          dst_account_type: org
-          force_update: true
-          static_list: "scoop-nerd-fonts"
+  #     - uses: Yikun/hub-mirror-action@master
+  #       with:
+  #         src: github/matthewjberger
+  #         dst: gitcode/scoop-installer-mirrors
+  #         dst_key: ${{ secrets.GITCODE_SSH_PRIVATE_KEY }}
+  #         dst_token: ${{ secrets.GITCODE_TOKEN }}
+  #         src_account_type: user
+  #         dst_account_type: org
+  #         force_update: true
+  #         static_list: "scoop-nerd-fonts"
 
-      - uses: Yikun/hub-mirror-action@master
-        with:
-          src: github/niheaven
-          dst: gitcode/scoop-installer-mirrors
-          dst_key: ${{ secrets.GITCODE_SSH_PRIVATE_KEY }}
-          dst_token: ${{ secrets.GITCODE_TOKEN }}
-          src_account_type: user
-          dst_account_type: org
-          force_update: true
-          static_list: "scoop-sysinternals"
+  #     - uses: Yikun/hub-mirror-action@master
+  #       with:
+  #         src: github/niheaven
+  #         dst: gitcode/scoop-installer-mirrors
+  #         dst_key: ${{ secrets.GITCODE_SSH_PRIVATE_KEY }}
+  #         dst_token: ${{ secrets.GITCODE_TOKEN }}
+  #         src_account_type: user
+  #         dst_account_type: org
+  #         force_update: true
+  #         static_list: "scoop-sysinternals"
 
-      - uses: Yikun/hub-mirror-action@master
-        with:
-          src: github/Calinou
-          dst: gitcode/scoop-installer-mirrors
-          dst_key: ${{ secrets.GITCODE_SSH_PRIVATE_KEY }}
-          dst_token: ${{ secrets.GITCODE_TOKEN }}
-          src_account_type: user
-          dst_account_type: org
-          force_update: true
-          static_list: "scoop-games"
+  #     - uses: Yikun/hub-mirror-action@master
+  #       with:
+  #         src: github/Calinou
+  #         dst: gitcode/scoop-installer-mirrors
+  #         dst_key: ${{ secrets.GITCODE_SSH_PRIVATE_KEY }}
+  #         dst_token: ${{ secrets.GITCODE_TOKEN }}
+  #         src_account_type: user
+  #         dst_account_type: org
+  #         force_update: true
+  #         static_list: "scoop-games"
 
   last_update:
     runs-on: windows-latest
