@@ -21,7 +21,7 @@ jobs:
           dst_token: ${{ secrets.GITEE_TOKEN }}
           account_type: org
           force_update: true
-          static_list: "Main,Extras,Versions,Nirsoft,PHP,Nonportable,Java,Scoop,Install"
+          static_list: "Main,Extras,Versions,Nirsoft,PHP,Nonportable,Java,Scoop"
           # static_list: ${{ steps.repo.outputs.repoList }}
           # black_list: ''
 
@@ -69,7 +69,7 @@ jobs:
   #         dst_token: ${{ secrets.GITCODE_TOKEN }}
   #         account_type: org
   #         force_update: true
-  #         static_list: "Main,Extras,Versions,Nirsoft,PHP,Nonportable,Java,Scoop,Install"
+  #         static_list: "Main,Extras,Versions,Nirsoft,PHP,Nonportable,Java,Scoop"
 
   #     - uses: Yikun/hub-mirror-action@master
   #       with:
