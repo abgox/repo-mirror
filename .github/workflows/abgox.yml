@@ -10,6 +10,7 @@ concurrency:
 
 jobs:
   sync-gitee:
+    name: Sync to Gitee
     runs-on: ubuntu-latest
     steps:
       - name: Get repository list exclude private and fork
@@ -24,9 +25,10 @@ jobs:
           dst_token: ${{ secrets.GITEE_TOKEN }}
           force_update: true
           static_list: ${{ steps.repo.outputs.repoList }}
-          black_list: "repo-mirror,abgo_bucket,PS-completions,ScoopType,AHK_lib"
+          black_list: "repo-mirror,github-stats,abgo_bucket,PS-completions,ScoopType,AHK_lib"
 
   sync-gitcode:
+    name: Sync to GitCode
     runs-on: ubuntu-latest
     steps:
       - name: Get repository list exclude private and fork
