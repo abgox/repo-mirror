@@ -25,7 +25,7 @@ jobs:
           dst_token: ${{ secrets.GITEE_TOKEN }}
           force_update: true
           static_list: ${{ steps.repo.outputs.repoList }}
-          black_list: "repo-mirror,github-stats,abgo_bucket,PS-completions,ScoopType,AHK_lib"
+          black_list: ${{ secrets.BLACK_LIST }}
 
   sync-gitcode:
     name: Sync to GitCode
@@ -43,7 +43,7 @@ jobs:
           dst_token: ${{ secrets.GITCODE_TOKEN }}
           force_update: true
           static_list: ${{ steps.repo.outputs.repoList }}
-          black_list: "repo-mirror,abgo_bucket,PS-completions,ScoopType,AHK_lib"
+          black_list: ${{ secrets.BLACK_LIST }}
 
   last_update:
     runs-on: windows-latest
