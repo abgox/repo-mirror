@@ -13,43 +13,41 @@ jobs:
     name: Sync to Gitee
     runs-on: ubuntu-latest
     steps:
-      - name: Get repository list exclude private and fork
-        id: repo
-        uses: yi-Xu-0100/repo-list-generator@v1.1.1
+      # - name: Get repository list exclude private and fork
+      #   id: repo
+      #   uses: yi-Xu-0100/repo-list-generator@main
 
-      - uses: Yikun/hub-mirror-action@master
+      - uses: abgox/hub-mirror-action@abgox
         with:
           src: github/abgox
           dst: gitee/abgox
           dst_key: ${{ secrets.GITEE_SSH_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
           force_update: true
-          static_list: ${{ steps.repo.outputs.repoList }}
-          black_list: ${{ secrets.BLACK_LIST }}
+          static_list: ${{ vars.WHITE_REPO_LIST }}
 
   sync-gitcode:
     name: Sync to GitCode
     runs-on: ubuntu-latest
     steps:
-      - name: Get repository list exclude private and fork
-        id: repo
-        uses: yi-Xu-0100/repo-list-generator@v1.1.1
+      # - name: Get repository list exclude private and fork
+      #   id: repo
+      #   uses: yi-Xu-0100/repo-list-generator@main
 
-      - uses: Yikun/hub-mirror-action@master
+      - uses: abgox/hub-mirror-action@abgox
         with:
           src: github/abgox
           dst: gitcode/abgox
           dst_key: ${{ secrets.GITCODE_SSH_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITCODE_TOKEN }}
           force_update: true
-          static_list: ${{ steps.repo.outputs.repoList }}
-          black_list: ${{ secrets.BLACK_LIST }}
+          static_list: ${{ vars.WHITE_REPO_LIST }}
 
   last_update:
     runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         # with:
         #   fetch-depth: 0
 

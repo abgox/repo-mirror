@@ -14,7 +14,7 @@ jobs:
     name: Sync to Gitee
     runs-on: ubuntu-latest
     steps:
-      - uses: Yikun/hub-mirror-action@master
+      - uses: abgox/hub-mirror-action@abgox
         with:
           src: github/ScoopInstaller
           dst: gitee/scoop-installer-mirrors
@@ -22,11 +22,9 @@ jobs:
           dst_token: ${{ secrets.GITEE_TOKEN }}
           account_type: org
           force_update: true
-          static_list: "Main,Extras,Versions,Nirsoft,PHP,Nonportable,Java,Scoop"
-          # static_list: ${{ steps.repo.outputs.repoList }}
-          # black_list: ''
+          static_list: ${{ vars.WHITE_SCOOP_REPO_LIST}}
 
-      - uses: Yikun/hub-mirror-action@master
+      - uses: abgox/hub-mirror-action@abgox
         with:
           src: github/matthewjberger
           dst: gitee/scoop-installer-mirrors
@@ -37,7 +35,7 @@ jobs:
           force_update: true
           static_list: "scoop-nerd-fonts"
 
-      - uses: Yikun/hub-mirror-action@master
+      - uses: abgox/hub-mirror-action@abgox
         with:
           src: github/niheaven
           dst: gitee/scoop-installer-mirrors
@@ -48,7 +46,7 @@ jobs:
           force_update: true
           static_list: "scoop-sysinternals"
 
-      - uses: Yikun/hub-mirror-action@master
+      - uses: abgox/hub-mirror-action@abgox
         with:
           src: github/Calinou
           dst: gitee/scoop-installer-mirrors
@@ -63,7 +61,7 @@ jobs:
   #   name: Sync to GitCode
   #   runs-on: ubuntu-latest
   #   steps:
-  #     - uses: Yikun/hub-mirror-action@master
+  #     - uses: abgox/hub-mirror-action@abgox
   #       with:
   #         src: github/ScoopInstaller
   #         dst: gitcode/scoop-installer-mirrors
@@ -71,9 +69,9 @@ jobs:
   #         dst_token: ${{ secrets.GITCODE_TOKEN }}
   #         account_type: org
   #         force_update: true
-  #         static_list: "Main,Extras,Versions,Nirsoft,PHP,Nonportable,Java,Scoop"
+  #         static_list: ${{ vars.WHITE_SCOOP_REPO_LIST}}
 
-  #     - uses: Yikun/hub-mirror-action@master
+  #     - uses: abgox/hub-mirror-action@abgox
   #       with:
   #         src: github/matthewjberger
   #         dst: gitcode/scoop-installer-mirrors
@@ -84,7 +82,7 @@ jobs:
   #         force_update: true
   #         static_list: "scoop-nerd-fonts"
 
-  #     - uses: Yikun/hub-mirror-action@master
+  #     - uses: abgox/hub-mirror-action@abgox
   #       with:
   #         src: github/niheaven
   #         dst: gitcode/scoop-installer-mirrors
@@ -95,7 +93,7 @@ jobs:
   #         force_update: true
   #         static_list: "scoop-sysinternals"
 
-  #     - uses: Yikun/hub-mirror-action@master
+  #     - uses: abgox/hub-mirror-action@abgox
   #       with:
   #         src: github/Calinou
   #         dst: gitcode/scoop-installer-mirrors
