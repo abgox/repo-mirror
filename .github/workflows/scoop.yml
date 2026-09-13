@@ -2,9 +2,8 @@ name: Mirror for ScoopInstaller
 
 on:
   workflow_dispatch:
-  schedule:
-    # At minute 50 past every 4th hour.
-    - cron: "50 */4 * * *"
+  # schedule:
+  #   - cron: "50 */4 * * *"
 
 concurrency:
   group: mirror-scoop-installer
@@ -23,83 +22,3 @@ jobs:
           account_type: org
           force_update: true
           static_list: ${{ vars.WHITE_SCOOP_REPO_LIST}}
-
-      - uses: abgox/hub-mirror-action@abgox
-        with:
-          src: github/matthewjberger
-          dst: gitee/scoop-installer-mirrors
-          dst_key: ${{ secrets.GITEE_SSH_PRIVATE_KEY }}
-          dst_token: ${{ secrets.GITEE_TOKEN }}
-          src_account_type: user
-          dst_account_type: org
-          force_update: true
-          static_list: "scoop-nerd-fonts"
-
-      - uses: abgox/hub-mirror-action@abgox
-        with:
-          src: github/niheaven
-          dst: gitee/scoop-installer-mirrors
-          dst_key: ${{ secrets.GITEE_SSH_PRIVATE_KEY }}
-          dst_token: ${{ secrets.GITEE_TOKEN }}
-          src_account_type: user
-          dst_account_type: org
-          force_update: true
-          static_list: "scoop-sysinternals"
-
-      - uses: abgox/hub-mirror-action@abgox
-        with:
-          src: github/Calinou
-          dst: gitee/scoop-installer-mirrors
-          dst_key: ${{ secrets.GITEE_SSH_PRIVATE_KEY }}
-          dst_token: ${{ secrets.GITEE_TOKEN }}
-          src_account_type: user
-          dst_account_type: org
-          force_update: true
-          static_list: "scoop-games"
-
-  # sync-gitcode:
-  #   name: Sync to GitCode
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: abgox/hub-mirror-action@abgox
-  #       with:
-  #         src: github/ScoopInstaller
-  #         dst: gitcode/scoop-installer-mirrors
-  #         dst_key: ${{ secrets.GITCODE_SSH_PRIVATE_KEY }}
-  #         dst_token: ${{ secrets.GITCODE_TOKEN }}
-  #         account_type: org
-  #         force_update: true
-  #         static_list: ${{ vars.WHITE_SCOOP_REPO_LIST}}
-
-  #     - uses: abgox/hub-mirror-action@abgox
-  #       with:
-  #         src: github/matthewjberger
-  #         dst: gitcode/scoop-installer-mirrors
-  #         dst_key: ${{ secrets.GITCODE_SSH_PRIVATE_KEY }}
-  #         dst_token: ${{ secrets.GITCODE_TOKEN }}
-  #         src_account_type: user
-  #         dst_account_type: org
-  #         force_update: true
-  #         static_list: "scoop-nerd-fonts"
-
-  #     - uses: abgox/hub-mirror-action@abgox
-  #       with:
-  #         src: github/niheaven
-  #         dst: gitcode/scoop-installer-mirrors
-  #         dst_key: ${{ secrets.GITCODE_SSH_PRIVATE_KEY }}
-  #         dst_token: ${{ secrets.GITCODE_TOKEN }}
-  #         src_account_type: user
-  #         dst_account_type: org
-  #         force_update: true
-  #         static_list: "scoop-sysinternals"
-
-  #     - uses: abgox/hub-mirror-action@abgox
-  #       with:
-  #         src: github/Calinou
-  #         dst: gitcode/scoop-installer-mirrors
-  #         dst_key: ${{ secrets.GITCODE_SSH_PRIVATE_KEY }}
-  #         dst_token: ${{ secrets.GITCODE_TOKEN }}
-  #         src_account_type: user
-  #         dst_account_type: org
-  #         force_update: true
-  #         static_list: "scoop-games"
