@@ -9,16 +9,27 @@ concurrency:
   group: mirror-scoop-installer
 
 jobs:
-  sync-gitee:
-    name: Sync to Gitee
+  git-mirror:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        repo: ${{ fromJSON(vars.WHITE_SCOOP_REPO_LIST) }}
+    steps:
+      - uses: abgox/git-mirror-action@main
+        with:
+          src_url: git@github.com:ScoopInstaller/${{ matrix.repo }}.git
+          dst_url: git@gitee.com:scoop-installer-mirrors/${{ matrix.repo }}.git
+          src_ssh_key: ${{ secrets.SSH_PRIVATE_KEY_GITHUB }}
+          dst_ssh_key: ${{ secrets.SSH_PRIVATE_KEY_GITEE }}
+
+  git-mirror-scoop:
     runs-on: ubuntu-latest
     steps:
-      - uses: abgox/hub-mirror-action@abgox
+      - uses: abgox/git-mirror-action@main
         with:
-          src: github/ScoopInstaller
-          dst: gitee/scoop-installer-mirrors
-          dst_key: ${{ secrets.GITEE_SSH_PRIVATE_KEY }}
-          dst_token: ${{ secrets.GITEE_TOKEN }}
-          account_type: org
-          force_update: true
-          static_list: ${{ vars.WHITE_SCOOP_REPO_LIST}}
+          src_url: git@github.com:ScoopInstaller/Scoop.git
+          dst_url: git@gitee.com:scoop-installer-mirrors/Scoop.git
+          src_ssh_key: ${{ secrets.SSH_PRIVATE_KEY_GITHUB }}
+          dst_ssh_key: ${{ secrets.SSH_PRIVATE_KEY_GITEE }}
+          branches: "develop"
