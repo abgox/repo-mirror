@@ -26,6 +26,7 @@ jobs:
           dst_ssh_key: |
             - ${{ secrets.SSH_PRIVATE_KEY_ATOMGIT }}
             - ${{ secrets.SSH_PRIVATE_KEY_GITEE }}
+          tags: false
 
   git-mirror-scoop:
     runs-on: ubuntu-latest
